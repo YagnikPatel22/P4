@@ -61,13 +61,14 @@
             transition: all 0.4s cubic-bezier(0.28, 0.11, 0.32, 1);
         }
 
-        /* Navigation */
+        /* Navigation - Fixed the display issue */
         .nav-wrapper {
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
             transition: all 0.4s cubic-bezier(0.28, 0.11, 0.32, 1);
+            display: block; /* Explicitly show on desktop */
         }
 
         nav {
@@ -77,7 +78,7 @@
             backdrop-filter: saturate(180%) blur(20px);
             -webkit-backdrop-filter: saturate(180%) blur(20px);
             border-bottom: 1px solid var(--border);
-            display: flex;
+            display: flex; /* Explicitly flex for desktop */
             align-items: center;
             justify-content: center;
             position: relative;
@@ -768,18 +769,21 @@
             transform: scale(1.1);
         }
 
-        /* Responsive Design */
+        /* Responsive Design - Fixed media queries */
         @media (max-width: 768px) {
-            .nav-links, .nav-social {
+            /* Hide desktop nav on mobile */
+            .nav-wrapper {
                 display: none;
             }
 
+            .nav-links, 
+            .nav-social {
+                display: none;
+            }
+
+            /* Show mobile nav on mobile */
             .mobile-nav {
                 display: flex;
-            }
-
-            nav {
-                display: none;
             }
 
             .hero-container {
@@ -828,7 +832,7 @@
                 align-items: center;
             }
 
-            nav, .mobile-nav {
+            .mobile-nav {
                 padding: 0 16px;
             }
 
@@ -837,13 +841,18 @@
             }
         }
 
+        /* Ensure desktop nav shows on desktop */
         @media (min-width: 769px) {
             .mobile-nav {
                 display: none;
             }
             
+            .nav-wrapper {
+                display: block;
+            }
+            
             nav {
-                display: flex !important;
+                display: flex;
             }
         }
     </style>
@@ -1046,8 +1055,14 @@
         const mobileThemeToggle = document.getElementById('mobileThemeToggle');
         const body = document.body;
         
-        // Load saved theme or default to light
-        const savedTheme = localStorage.getItem('theme') || 'light';
+        // Check if localStorage is available (it won't be in Claude artifacts)
+        let savedTheme = 'light';
+        try {
+            savedTheme = localStorage.getItem('theme') || 'light';
+        } catch (e) {
+            // localStorage not available, use default
+        }
+        
         if (savedTheme === 'dark') {
             body.setAttribute('data-theme', 'dark');
             themeToggle.textContent = '☀️';
@@ -1060,12 +1075,20 @@
                 body.removeAttribute('data-theme');
                 themeToggle.textContent = '🌙';
                 mobileThemeToggle.textContent = '🌙';
-                localStorage.setItem('theme', 'light');
+                try {
+                    localStorage.setItem('theme', 'light');
+                } catch (e) {
+                    // localStorage not available
+                }
             } else {
                 body.setAttribute('data-theme', 'dark');
                 themeToggle.textContent = '☀️';
                 mobileThemeToggle.textContent = '☀️';
-                localStorage.setItem('theme', 'dark');
+                try {
+                    localStorage.setItem('theme', 'dark');
+                } catch (e) {
+                    // localStorage not available
+                }
             }
         }
 
