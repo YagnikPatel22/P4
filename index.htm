@@ -773,17 +773,12 @@
         @media (max-width: 768px) {
             /* Hide desktop nav on mobile */
             .nav-wrapper {
-                display: none;
-            }
-
-            .nav-links, 
-            .nav-social {
-                display: none;
+                display: none !important;
             }
 
             /* Show mobile nav on mobile */
             .mobile-nav {
-                display: flex;
+                display: flex !important;
             }
 
             .hero-container {
@@ -844,15 +839,15 @@
         /* Ensure desktop nav shows on desktop */
         @media (min-width: 769px) {
             .mobile-nav {
-                display: none;
+                display: none !important;
             }
             
             .nav-wrapper {
-                display: block;
+                display: block !important;
             }
             
             nav {
-                display: flex;
+                display: flex !important;
             }
         }
     </style>
