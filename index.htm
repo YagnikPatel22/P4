@@ -33,7 +33,7 @@
             --gradient-accent: linear-gradient(135deg, #ff6b6b 0%, #ffd93d 100%);
             --radius: 24px;
             --radius-small: 12px;
-            --nav-height: 64px;
+            --nav-height: 70px;
         }
 
         [data-theme="dark"] {
@@ -61,182 +61,102 @@
             transition: all 0.4s cubic-bezier(0.28, 0.11, 0.32, 1);
         }
 
-        /* Navigation - Fixed the display issue */
-        .nav-wrapper {
+        /* NAVIGATION - Completely rebuilt */
+        header {
             position: fixed;
             top: 0;
-            width: 100%;
+            left: 0;
+            right: 0;
             z-index: 1000;
-            transition: all 0.4s cubic-bezier(0.28, 0.11, 0.32, 1);
-            display: block; /* Explicitly show on desktop */
-        }
-
-        nav {
-            padding: 0 22px;
             height: var(--nav-height);
-            background: var(--glass);
-            backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
-            display: flex; /* Explicitly flex for desktop */
-            align-items: center;
-            justify-content: center;
-            position: relative;
         }
 
-        .nav-container {
+        [data-theme="dark"] header {
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .navbar {
             max-width: 1200px;
-            width: 100%;
+            margin: 0 auto;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            padding: 0 24px;
         }
 
         .logo {
-            font-size: 21px;
+            font-size: 20px;
             font-weight: 600;
             color: var(--text-primary);
             text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.28, 0.11, 0.32, 1);
         }
 
-        .nav-links {
+        .nav-menu {
             display: flex;
             list-style: none;
-            gap: 24px;
-            align-items: center;
+            gap: 32px;
+            margin: 0;
         }
 
-        .nav-links a {
-            text-decoration: none;
+        .nav-menu a {
             color: var(--text-primary);
-            font-size: 14px;
+            text-decoration: none;
+            font-size: 16px;
             font-weight: 400;
-            transition: all 0.3s cubic-bezier(0.28, 0.11, 0.32, 1);
-            padding: 8px 16px;
-            border-radius: 20px;
+            transition: color 0.3s ease;
             opacity: 0.8;
         }
 
-        .nav-links a:hover {
+        .nav-menu a:hover {
             opacity: 1;
-            background: var(--glass-light);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            transform: translateY(-1px);
+            color: var(--accent-blue);
         }
 
-        .nav-social {
+        .nav-actions {
             display: flex;
-            gap: 16px;
             align-items: center;
+            gap: 16px;
         }
 
-        .nav-social a {
-            text-decoration: none;
-            color: var(--text-primary);
-            font-size: 14px;
-            padding: 8px 12px;
-            border-radius: 20px;
-            transition: all 0.3s cubic-bezier(0.28, 0.11, 0.32, 1);
-            opacity: 0.8;
-        }
-
-        .nav-social a:hover {
-            opacity: 1;
-            background: var(--glass-light);
-        }
-
-        .theme-toggle {
+        .theme-btn {
             background: none;
             border: none;
-            color: var(--text-primary);
+            font-size: 20px;
             cursor: pointer;
-            font-size: 16px;
-            padding: 8px 12px;
-            border-radius: 20px;
-            transition: all 0.3s cubic-bezier(0.28, 0.11, 0.32, 1);
-            opacity: 0.8;
+            padding: 8px;
+            border-radius: 8px;
+            transition: background 0.3s ease;
         }
 
-        .theme-toggle:hover {
-            opacity: 1;
+        .theme-btn:hover {
             background: var(--glass-light);
         }
 
         /* Mobile Navigation */
-        .mobile-nav {
+        .mobile-toggle {
             display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: var(--nav-height);
-            background: var(--glass);
-            backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
-            border-bottom: 1px solid var(--border);
-            z-index: 1001;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 16px;
-        }
-
-        .mobile-menu-btn {
             background: none;
             border: none;
+            font-size: 24px;
             color: var(--text-primary);
-            font-size: 18px;
             cursor: pointer;
-            padding: 8px;
-        }
-
-        .mobile-menu {
-            position: fixed;
-            top: var(--nav-height);
-            left: 0;
-            right: 0;
-            background: var(--glass);
-            backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
-            border-bottom: 1px solid var(--border);
-            transform: translateY(-100%);
-            transition: transform 0.4s cubic-bezier(0.28, 0.11, 0.32, 1);
-            z-index: 1000;
-        }
-
-        .mobile-menu.active {
-            transform: translateY(0);
-        }
-
-        .mobile-menu-items {
-            padding: 20px 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .mobile-menu-items a {
-            text-decoration: none;
-            color: var(--text-primary);
-            font-size: 16px;
-            padding: 12px 16px;
-            border-radius: 12px;
-            transition: all 0.3s cubic-bezier(0.28, 0.11, 0.32, 1);
-        }
-
-        .mobile-menu-items a:hover {
-            background: var(--glass-light);
         }
 
         /* Hero Section */
+        main {
+            padding-top: var(--nav-height);
+        }
+
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             background: var(--bg-primary);
-            padding-top: var(--nav-height);
             position: relative;
             overflow: hidden;
         }
@@ -248,7 +168,7 @@
             grid-template-columns: 1fr 1fr;
             gap: 80px;
             align-items: center;
-            padding: 0 22px;
+            padding: 0 24px;
         }
 
         .hero-content {
@@ -390,7 +310,7 @@
         }
 
         section {
-            padding: 100px 22px;
+            padding: 100px 24px;
             max-width: 1200px;
             width: 100%;
             position: relative;
@@ -408,9 +328,6 @@
             letter-spacing: -0.003em;
             color: var(--text-primary);
             margin-bottom: 16px;
-            opacity: 0;
-            transform: translateY(32px);
-            transition: all 0.8s cubic-bezier(0.28, 0.11, 0.32, 1);
         }
 
         .section-subtitle {
@@ -419,22 +336,12 @@
             line-height: 1.381;
             letter-spacing: 0.011em;
             color: var(--text-secondary);
-            opacity: 0;
-            transform: translateY(32px);
-            transition: all 0.8s cubic-bezier(0.28, 0.11, 0.32, 1) 0.1s;
-        }
-
-        .section-header.visible .section-title,
-        .section-header.visible .section-subtitle {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         /* Glass Card */
         .glass-card {
             background: linear-gradient(135deg, var(--glass), rgba(255, 255, 255, 0.05));
             backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
             border-radius: var(--radius);
             border: 1px solid var(--border);
             position: relative;
@@ -451,14 +358,6 @@
             grid-template-columns: 1fr 1fr;
             gap: 80px;
             align-items: center;
-            opacity: 0;
-            transform: translateY(32px);
-            transition: all 0.8s cubic-bezier(0.28, 0.11, 0.32, 1);
-        }
-
-        .about-content.visible {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         .about-text h3 {
@@ -502,14 +401,7 @@
         .skill-card {
             padding: 40px;
             transition: all 0.4s cubic-bezier(0.28, 0.11, 0.32, 1);
-            opacity: 0;
-            transform: translateY(32px);
             cursor: pointer;
-        }
-
-        .skill-card.visible {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         .skill-card:hover {
@@ -549,14 +441,6 @@
             margin: 0 auto;
             display: grid;
             gap: 24px;
-            opacity: 0;
-            transform: translateY(32px);
-            transition: all 0.8s cubic-bezier(0.28, 0.11, 0.32, 1);
-        }
-
-        .contact-form.visible {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         .form-group {
@@ -578,7 +462,6 @@
             border-radius: var(--radius);
             background: var(--glass);
             backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
             color: var(--text-primary);
             font-size: 17px;
             transition: all 0.3s cubic-bezier(0.28, 0.11, 0.32, 1);
@@ -600,7 +483,7 @@
 
         /* Footer */
         footer {
-            padding: 60px 22px;
+            padding: 60px 24px;
             background: var(--bg-primary);
             border-top: 1px solid var(--border);
         }
@@ -639,7 +522,6 @@
             padding: 12px 20px;
             background: var(--glass);
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--border);
             border-radius: 50px;
             color: var(--text-primary);
@@ -686,99 +568,14 @@
             color: var(--accent-blue);
         }
 
-        /* Progress Bar */
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 2px;
-            background: var(--accent-blue);
-            z-index: 1001;
-            transition: width 0.1s ease;
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 2000;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .modal.active {
-            opacity: 1;
-        }
-
-        .modal-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.8);
-            background: var(--glass);
-            backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
-            border-radius: var(--radius);
-            padding: 24px;
-            max-width: 90%;
-            max-height: 90%;
-            border: 1px solid var(--border);
-            transition: transform 0.3s ease;
-        }
-
-        .modal.active .modal-content {
-            transform: translate(-50%, -50%) scale(1);
-        }
-
-        .modal img {
-            max-width: 100%;
-            max-height: 70vh;
-            border-radius: var(--radius-small);
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: white;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s cubic-bezier(0.28, 0.11, 0.32, 1);
-        }
-
-        .close-modal:hover {
-            background: rgba(0, 0, 0, 0.5);
-            transform: scale(1.1);
-        }
-
-        /* Responsive Design - Fixed media queries */
+        /* Responsive Design */
         @media (max-width: 768px) {
-            /* Hide desktop nav on mobile */
-            .nav-wrapper {
-                display: none !important;
+            .nav-menu {
+                display: none;
             }
 
-            /* Show mobile nav on mobile */
-            .mobile-nav {
-                display: flex !important;
+            .mobile-toggle {
+                display: block;
             }
 
             .hero-container {
@@ -827,7 +624,7 @@
                 align-items: center;
             }
 
-            .mobile-nav {
+            .navbar {
                 padding: 0 16px;
             }
 
@@ -835,173 +632,136 @@
                 justify-content: center;
             }
         }
-
-        /* Ensure desktop nav shows on desktop */
-        @media (min-width: 769px) {
-            .mobile-nav {
-                display: none !important;
-            }
-            
-            .nav-wrapper {
-                display: block !important;
-            }
-            
-            nav {
-                display: flex !important;
-            }
-        }
     </style>
 </head>
 <body>
-    <div class="progress-bar" id="progressBar"></div>
-
-    <!-- Desktop Navigation -->
-    <div class="nav-wrapper">
-        <nav>
-            <div class="nav-container">
-                <a href="#home" class="logo">Alex Thompson</a>
-                <ul class="nav-links">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-                <div class="nav-social">
-                    <a href="https://twitter.com/alexthompson" target="_blank">X</a>
-                    <a href="https://linkedin.com/in/alexthompson" target="_blank">LinkedIn</a>
-                    <a href="mailto:alex@example.com">Email</a>
-                    <button class="theme-toggle" id="themeToggle">🌙</button>
-                </div>
+    <header>
+        <nav class="navbar">
+            <a href="#home" class="logo">Alex Thompson</a>
+            <ul class="nav-menu">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="https://twitter.com/alexthompson" target="_blank">X</a>
+                <a href="https://linkedin.com/in/alexthompson" target="_blank">LinkedIn</a>
+                <a href="mailto:alex@example.com">Email</a>
+                <button class="theme-btn" id="themeToggle">🌙</button>
             </div>
+            <button class="mobile-toggle" id="mobileToggle">☰</button>
         </nav>
-    </div>
+    </header>
 
-    <!-- Mobile Navigation -->
-    <div class="mobile-nav">
-        <a href="#home" class="logo">Alex Thompson</a>
-        <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
-    </div>
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1>Think different.</h1>
+                    <p class="subtitle">Creative developer and designer crafting exceptional digital experiences that bridge innovation with human-centered design.</p>
+                    <div class="hero-actions">
+                        <a href="#about" class="btn-primary">Discover my work</a>
+                        <a href="#contact" class="btn-secondary">Let's collaborate</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-glass-orb"></div>
+                </div>
+            </div>
+        </section>
 
-    <div class="mobile-menu" id="mobileMenu">
-        <div class="mobile-menu-items">
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#contact">Contact</a>
-            <button class="theme-toggle" id="mobileThemeToggle" style="margin-top: 16px; align-self: flex-start;">🌙</button>
+        <div class="section-wrapper">
+            <section id="about" class="about">
+                <div class="section-header">
+                    <h2 class="section-title">About</h2>
+                    <p class="section-subtitle">Passionate about creating meaningful digital experiences</p>
+                </div>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>Where creativity meets technology</h3>
+                        <p>I'm Alex Thompson, a creative developer and digital designer based in San Francisco. With over 8 years of experience, I specialize in creating digital products that seamlessly blend aesthetic excellence with functional innovation.</p>
+                        <p>My work spans from startups to Fortune 500 companies, where I've led design systems, developed user interfaces, and crafted experiences that have reached millions of users worldwide.</p>
+                        <p>I believe in the power of thoughtful design to solve complex problems and create meaningful connections between brands and their audiences.</p>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face" alt="Alex Thompson" class="profile-image">
+                </div>
+            </section>
         </div>
-    </div>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1>Think different.</h1>
-                <p class="subtitle">Creative developer and designer crafting exceptional digital experiences that bridge innovation with human-centered design.</p>
-                <div class="hero-actions">
-                    <a href="#about" class="btn-primary">Discover my work</a>
-                    <a href="#contact" class="btn-secondary">Let's collaborate</a>
+        <div class="section-wrapper">
+            <section id="skills">
+                <div class="section-header">
+                    <h2 class="section-title">Expertise</h2>
+                    <p class="section-subtitle">Specialized skills across the digital spectrum</p>
                 </div>
-            </div>
-            <div class="hero-visual">
-                <div class="hero-glass-orb"></div>
-            </div>
+                <div class="skills-grid">
+                    <div class="skill-card glass-card">
+                        <div class="skill-icon">💻</div>
+                        <h3>Frontend Development</h3>
+                        <p>React, Next.js, TypeScript, and modern CSS. Building responsive, performant applications with pixel-perfect attention to detail.</p>
+                    </div>
+                    <div class="skill-card glass-card">
+                        <div class="skill-icon">🎨</div>
+                        <h3>UI/UX Design</h3>
+                        <p>Creating intuitive user experiences with Figma, Sketch, and Adobe Creative Suite. Focus on user-centered design principles.</p>
+                    </div>
+                    <div class="skill-card glass-card">
+                        <div class="skill-icon">⚡</div>
+                        <h3>Performance Optimization</h3>
+                        <p>Expert in web vitals, accessibility standards, and cross-platform compatibility for exceptional user experiences.</p>
+                    </div>
+                    <div class="skill-card glass-card">
+                        <div class="skill-icon">🔧</div>
+                        <h3>Full-Stack Development</h3>
+                        <p>Node.js, Python, cloud architecture, and database design for scalable, enterprise-level applications.</p>
+                    </div>
+                    <div class="skill-card glass-card">
+                        <div class="skill-icon">📱</div>
+                        <h3>Mobile Development</h3>
+                        <p>React Native and Flutter for cross-platform mobile apps with native performance and platform-specific design patterns.</p>
+                    </div>
+                    <div class="skill-card glass-card">
+                        <div class="skill-icon">📸</div>
+                        <h3>Creative Direction</h3>
+                        <p>Brand strategy, visual storytelling, and photography that communicates ideas with clarity and emotional impact.</p>
+                    </div>
+                </div>
+            </section>
         </div>
-    </section>
 
-    <!-- About Section -->
-    <div class="section-wrapper">
-        <section id="about" class="about">
-            <div class="section-header">
-                <h2 class="section-title">About</h2>
-                <p class="section-subtitle">Passionate about creating meaningful digital experiences</p>
-            </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Where creativity meets technology</h3>
-                    <p>I'm Alex Thompson, a creative developer and digital designer based in San Francisco. With over 8 years of experience, I specialize in creating digital products that seamlessly blend aesthetic excellence with functional innovation.</p>
-                    <p>My work spans from startups to Fortune 500 companies, where I've led design systems, developed user interfaces, and crafted experiences that have reached millions of users worldwide.</p>
-                    <p>I believe in the power of thoughtful design to solve complex problems and create meaningful connections between brands and their audiences.</p>
+        <div class="section-wrapper">
+            <section id="contact" class="contact">
+                <div class="section-header">
+                    <h2 class="section-title">Contact</h2>
+                    <p class="section-subtitle">Let's create something extraordinary together</p>
                 </div>
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face" alt="Alex Thompson" class="profile-image">
-            </div>
-        </section>
-    </div>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Company (Optional)</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required placeholder="Tell me about your project or how we can work together..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary" id="submitBtn">Send message</button>
+                </form>
+            </section>
+        </div>
+    </main>
 
-    <!-- Skills Section -->
-    <div class="section-wrapper">
-        <section id="skills">
-            <div class="section-header">
-                <h2 class="section-title">Expertise</h2>
-                <p class="section-subtitle">Specialized skills across the digital spectrum</p>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-card glass-card">
-                    <div class="skill-icon">💻</div>
-                    <h3>Frontend Development</h3>
-                    <p>React, Next.js, TypeScript, and modern CSS. Building responsive, performant applications with pixel-perfect attention to detail.</p>
-                </div>
-                <div class="skill-card glass-card">
-                    <div class="skill-icon">🎨</div>
-                    <h3>UI/UX Design</h3>
-                    <p>Creating intuitive user experiences with Figma, Sketch, and Adobe Creative Suite. Focus on user-centered design principles.</p>
-                </div>
-                <div class="skill-card glass-card">
-                    <div class="skill-icon">⚡</div>
-                    <h3>Performance Optimization</h3>
-                    <p>Expert in web vitals, accessibility standards, and cross-platform compatibility for exceptional user experiences.</p>
-                </div>
-                <div class="skill-card glass-card">
-                    <div class="skill-icon">🔧</div>
-                    <h3>Full-Stack Development</h3>
-                    <p>Node.js, Python, cloud architecture, and database design for scalable, enterprise-level applications.</p>
-                </div>
-                <div class="skill-card glass-card">
-                    <div class="skill-icon">📱</div>
-                    <h3>Mobile Development</h3>
-                    <p>React Native and Flutter for cross-platform mobile apps with native performance and platform-specific design patterns.</p>
-                </div>
-                <div class="skill-card glass-card">
-                    <div class="skill-icon">📸</div>
-                    <h3>Creative Direction</h3>
-                    <p>Brand strategy, visual storytelling, and photography that communicates ideas with clarity and emotional impact.</p>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- Contact Section -->
-    <div class="section-wrapper">
-        <section id="contact" class="contact">
-            <div class="section-header">
-                <h2 class="section-title">Contact</h2>
-                <p class="section-subtitle">Let's create something extraordinary together</p>
-            </div>
-            <form class="contact-form" id="contactForm">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="company">Company (Optional)</label>
-                    <input type="text" id="company" name="company">
-                </div>
-                <div class="form-group">
-                    <label for="subject">Subject</label>
-                    <input type="text" id="subject" name="subject" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" required placeholder="Tell me about your project or how we can work together..."></textarea>
-                </div>
-                <button type="submit" class="btn-primary" id="submitBtn">Send message</button>
-            </form>
-        </section>
-    </div>
-
-    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="footer-info">
@@ -1036,112 +796,27 @@
         </div>
     </footer>
 
-    <!-- Modal -->
-    <div class="modal" id="modal">
-        <div class="modal-content">
-            <button class="close-modal" id="closeModal">&times;</button>
-            <img id="modalImage" src="" alt="Full size image">
-        </div>
-    </div>
-
     <script>
         // Theme Toggle
         const themeToggle = document.getElementById('themeToggle');
-        const mobileThemeToggle = document.getElementById('mobileThemeToggle');
         const body = document.body;
         
-        // Check if localStorage is available (it won't be in Claude artifacts)
-        let savedTheme = 'light';
-        try {
-            savedTheme = localStorage.getItem('theme') || 'light';
-        } catch (e) {
-            // localStorage not available, use default
-        }
+        // Check if theme is stored (won't work in Claude artifacts)
+        let currentTheme = 'light';
         
-        if (savedTheme === 'dark') {
-            body.setAttribute('data-theme', 'dark');
-            themeToggle.textContent = '☀️';
-            mobileThemeToggle.textContent = '☀️';
-        }
-
         function toggleTheme() {
-            const currentTheme = body.getAttribute('data-theme');
-            if (currentTheme === 'dark') {
-                body.removeAttribute('data-theme');
-                themeToggle.textContent = '🌙';
-                mobileThemeToggle.textContent = '🌙';
-                try {
-                    localStorage.setItem('theme', 'light');
-                } catch (e) {
-                    // localStorage not available
-                }
-            } else {
+            if (currentTheme === 'light') {
                 body.setAttribute('data-theme', 'dark');
                 themeToggle.textContent = '☀️';
-                mobileThemeToggle.textContent = '☀️';
-                try {
-                    localStorage.setItem('theme', 'dark');
-                } catch (e) {
-                    // localStorage not available
-                }
+                currentTheme = 'dark';
+            } else {
+                body.removeAttribute('data-theme');
+                themeToggle.textContent = '🌙';
+                currentTheme = 'light';
             }
         }
 
         themeToggle.addEventListener('click', toggleTheme);
-        mobileThemeToggle.addEventListener('click', toggleTheme);
-
-        // Mobile Navigation
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        let mobileMenuOpen = false;
-
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenuOpen = !mobileMenuOpen;
-            mobileMenu.classList.toggle('active');
-            mobileMenuBtn.textContent = mobileMenuOpen ? '✕' : '☰';
-        });
-
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('.mobile-menu-items a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenuOpen = false;
-                mobileMenu.classList.remove('active');
-                mobileMenuBtn.textContent = '☰';
-            });
-        });
-
-        // Scroll Progress Bar
-        function updateScrollProgress() {
-            const scrolled = window.pageYOffset;
-            const maxHeight = document.body.offsetHeight - window.innerHeight;
-            const progress = (scrolled / maxHeight) * 100;
-            document.getElementById('progressBar').style.width = progress + '%';
-        }
-
-        window.addEventListener('scroll', updateScrollProgress);
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        // Observe elements for animation
-        document.addEventListener('DOMContentLoaded', () => {
-            const animateElements = document.querySelectorAll(
-                '.section-header, .about-content, .skill-card, .contact-form'
-            );
-            
-            animateElements.forEach(el => observer.observe(el));
-        });
 
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1181,11 +856,6 @@
                     this.reset();
                 }, 3000);
             }, 1500);
-        });
-
-        // Initialize on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            updateScrollProgress();
         });
     </script>
 </body>
